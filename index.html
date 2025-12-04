@@ -1,0 +1,826 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARGHEN Tea - Mark & Ghenela</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8B6F47;
+            --secondary: #D4A574;
+            --accent: #E8DCC8;
+            --dark: #4A3E2E;
+            --light: #F5F1ED;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+
+        nav {
+            background-color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo-img {
+            height: 32px;
+            width: auto;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+            nav a:hover {
+                color: var(--secondary);
+            }
+
+        .hero {
+            background-image: url('/images/catcat.png');
+            background-size: cover;
+            background-position: center;
+            background-color: rgba(245, 241, 237, 0.3);
+            background-blend-mode: lighten;
+            padding: 4rem 2rem;
+            text-align: center;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .hero::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background-color: rgba(255, 255, 255, 0.3);
+                border-radius: 20px;
+                margin: 2rem;
+                z-index: 1;
+            }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+            .hero-content h1 {
+                font-size: 3.5rem;
+                color: var(--primary);
+                margin-bottom: 1rem;
+                letter-spacing: 2px;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .hero-content p {
+                font-size: 1.3rem;
+                color: var(--dark);
+                margin-bottom: 2rem;
+                max-width: 600px;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+        .hero-image {
+            margin: 2rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .hero-image img {
+                max-width: 100%;
+                height: auto;
+                width: 350px;
+            }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+            .cta-button:hover {
+                background-color: var(--dark);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(139, 111, 71, 0.3);
+            }
+
+        .about {
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+            .about h2 {
+                font-size: 2.5rem;
+                color: var(--primary);
+                margin-bottom: 1.5rem;
+            }
+
+            .about p {
+                font-size: 1.1rem;
+                color: var(--dark);
+                margin-bottom: 1rem;
+                line-height: 1.8;
+            }
+
+        .menu {
+            background-color: white;
+            padding: 4rem 2rem;
+        }
+
+        .menu-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background-color: var(--accent);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+            .menu-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            }
+
+        .menu-item-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            /* Added styling to ensure images fit properly within the container */
+            .menu-item-icon img {
+                max-width: 100%;
+                max-height: 100%;
+                width: auto;
+                height: auto;
+                object-fit: contain;
+            }
+
+        .menu-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .menu-item p {
+            color: var(--dark);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+
+        .special-menu {
+            background-color: var(--accent);
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+            .special-menu h3 {
+                color: var(--primary);
+                margin-bottom: 1.5rem;
+                font-size: 1.5rem;
+                text-align: center;
+            }
+
+        .beverage-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .beverage-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+            .beverage-card:hover {
+                border-color: var(--primary);
+                box-shadow: 0 4px 12px rgba(139, 111, 71, 0.2);
+            }
+
+            .beverage-card h4 {
+                color: var(--primary);
+                margin-bottom: 1rem;
+            }
+
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        .flavor-menu {
+            display: none;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            border: 2px solid var(--primary);
+        }
+
+        input[type="radio"]:checked + .flavor-label + .flavor-menu {
+            display: block;
+        }
+
+        .flavor-label {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        input[type="radio"]:checked + .flavor-label {
+            background-color: var(--dark);
+        }
+
+        .flavor-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .flavor-btn {
+            background-color: var(--accent);
+            border: 2px solid var(--secondary);
+            color: var(--dark);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+            .flavor-btn:hover {
+                background-color: var(--secondary);
+                transform: scale(1.05);
+            }
+
+
+            .flavor-btn:active {
+                background-color: var(--primary);
+                color: white;
+                border-color: var(--dark);
+            }
+
+        .amount-input-group {
+            margin: 1.5rem 0;
+        }
+
+            .amount-input-group label {
+                display: block;
+                color: var(--primary);
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            .amount-input-group input {
+                width: 100%;
+                padding: 0.75rem;
+                border: 2px solid var(--secondary);
+                border-radius: 8px;
+                font-size: 1rem;
+            }
+
+        .menu-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: var(--dark);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+            .btn-secondary:hover {
+                background-color: var(--primary);
+                color: white;
+            }
+
+
+        .btn-add-more {
+            display: none;
+        }
+
+
+        .btn-done-link {
+            background-color: var(--secondary);
+            color: var(--dark);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .btn-done-link:hover {
+                background-color: var(--primary);
+                color: white;
+            }
+
+
+        .order-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #6B5839 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+            .order-section h2 {
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .order-section p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+        .order-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .order-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+            .order-card:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+                border-color: rgba(255, 255, 255, 0.6);
+                transform: scale(1.05);
+            }
+
+            .order-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .order-card p {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+            }
+
+        .order-button {
+            background-color: var(--secondary);
+            color: var(--dark);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .order-button:hover {
+                background-color: var(--accent);
+                transform: scale(1.05);
+            }
+
+        .delivery-form {
+            display: none;
+            background-color: white;
+            color: var(--dark);
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 400px;
+            margin: 2rem auto;
+        }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+            input[type="checkbox"]:checked + .payment-label + .delivery-form {
+                display: block;
+            }
+
+        .payment-label {
+            display: block;
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+            .form-group label {
+                display: block;
+                color: var(--primary);
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 0.75rem;
+                border: 2px solid var(--secondary);
+                border-radius: 8px;
+                font-size: 1rem;
+            }
+
+                .form-group input:focus {
+                    outline: none;
+                    border-color: var(--primary);
+                    box-shadow: 0 0 8px rgba(139, 111, 71, 0.3);
+                }
+
+
+        .btn-done {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+            .btn-done:hover {
+                background-color: var(--dark);
+            }
+
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+            footer p {
+                margin-bottom: 1rem;
+            }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+            .social-links a {
+                color: var(--secondary);
+                text-decoration: none;
+                font-weight: 500;
+                transition: color 0.3s ease;
+            }
+
+                .social-links a:hover {
+                    color: var(--accent);
+                }
+
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .about h2,
+            .menu-title,
+            .order-section h2 {
+                font-size: 2rem;
+            }
+
+            .menu-grid,
+            .order-options {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image img {
+                width: 250px;
+            }
+        }
+
+        .payment-logo {
+            height: 40px;
+            width: auto;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo-container">
+            <img src="images/Elegant_Minimalist_Calligraphy_Initials_logo__1_-removebg-preview.PNG" alt="MARKGHEN Logo" class="nav-logo-img">
+            <div class="logo">MARGHEN - Mark & Ghenela Shop</div>
+        </div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#order">Order</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to MARGHEN</h1>
+            <p>Cozy cats and delicious beverages, served with love</p>
+            <div class="hero-image">
+                <img src="images/Elegant_Minimalist_Calligraphy_Initials_logo__1_-removebg-preview.PNG" alt="MARKGHEN Tea Logo featuring cat and tea cup">
+            </div>
+            <a href="#menu" class="cta-button">Order Now</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>
+            At MARGHEN Shop, we believe in serving more than just beverages. We create moments of warmth and comfort through our shop. Each drink is carefully crafted to delight your senses and brighten your day.
+        </p>
+        <p>
+            Our cozy space, inspired by our beloved cat companion, welcomes everyone to sit back, relax, and enjoy the beverages we have.
+        </p>
+    </section>
+
+    <section id="menu" class="menu">
+        <h2 class="menu-title">Our Specialties</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-item-icon">
+                    <img src="images/Tea-removebg-preview.PNG" alt="Tea">
+                </div>
+                <h3>Tea</h3>
+                <p>Perfectly brewed to bring out rich flavors.</p>
+                <div class="price">₱39</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-icon">
+                    <img src="images/Milktea.WEBP" alt="Milktea">
+                </div>
+                <h3>Milktea</h3>
+                <p>Smooth and creamy, our signature blend of tea and milk is absolutely irresistible.</p>
+                <div class="price">₱49</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-item-icon">
+                    <img src="images/Frappe-removebg-preview.PNG" alt="Frappe">
+                </div>
+                <h3>Frappe</h3>
+                <p>Chilled and blended to perfection, our frappés are refreshing and indulgent.</p>
+                <div class="price">₱59</div>
+            </div>
+        </div>
+
+
+        <div class="special-menu">
+            <h3>Choose Your Flavor</h3>
+            <div class="beverage-group">
+
+                <div class="beverage-card">
+                    <h4>Tea</h4>
+                    <input type="radio" id="tea-flavor" name="beverage" value="tea">
+                    <label for="tea-flavor" class="flavor-label">Select Flavor</label>
+                    <div class="flavor-menu">
+                        <div class="flavor-options">
+                            <button class="flavor-btn">Matcha</button>
+                            <button class="flavor-btn">Green Tea</button>
+                            <button class="flavor-btn">Chamomile</button>
+                            <button class="flavor-btn">Leaf Black Tea</button>
+                            <button class="flavor-btn">Salabat</button>
+                        </div>
+                        <div class="amount-input-group">
+                            <label for="tea-amount">Amount:</label>
+                            <input type="number" id="tea-amount" min="1" value="1">
+                        </div>
+                        <button class="btn-secondary" onclick="document.getElementById('order').scrollIntoView();">Done</button>
+                    </div>
+                </div>
+
+                <div class="beverage-card">
+                    <h4>Milktea</h4>
+                    <input type="radio" id="milktea-flavor" name="beverage" value="milktea">
+                    <label for="milktea-flavor" class="flavor-label">Select Flavor</label>
+                    <div class="flavor-menu">
+                        <div class="flavor-options">
+                            <button class="flavor-btn">Matcha</button>
+                            <button class="flavor-btn">Oreo</button>
+                            <button class="flavor-btn">Chocolate</button>
+                            <button class="flavor-btn">Vanilla</button>
+                            <button class="flavor-btn">Java Chip</button>
+                        </div>
+                        <div class="amount-input-group">
+                            <label for="milktea-amount">Amount:</label>
+                            <input type="number" id="milktea-amount" min="1" value="1">
+                        </div>
+                        <button class="btn-secondary" onclick="document.getElementById('order').scrollIntoView();">Done</button>
+                    </div>
+                </div>
+
+                <div class="beverage-card">
+                    <h4>Frappe</h4>
+                    <input type="radio" id="frappe-flavor" name="beverage" value="frappe">
+                    <label for="frappe-flavor" class="flavor-label">Select Flavor</label>
+                    <div class="flavor-menu">
+                        <div class="flavor-options">
+                            <button class="flavor-btn">Matcha</button>
+                            <button class="flavor-btn">Oreo</button>
+                            <button class="flavor-btn">Chocolate</button>
+                            <button class="flavor-btn">Vanilla</button>
+                            <button class="flavor-btn">Java Chip</button>
+                        </div>
+                        <div class="amount-input-group">
+                            <label for="frappe-amount">Amount:</label>
+                            <input type="number" id="frappe-amount" min="1" value="1">
+                        </div>
+                        <button class="btn-secondary" onclick="document.getElementById('order').scrollIntoView();">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="order" class="order-section">
+        <h2>Ready to Order?</h2>
+        <p>Choose your payment method to complete your order</p>
+        <div class="order-options">
+            <div class="order-card">
+                <div style="margin-bottom: 1rem;">
+                    <img src="images/GCash-Logo.png" alt="GCash" class="payment-logo">
+                </div>
+                <p>Pay using GCash mobile payment</p>
+                <button class="order-button" onclick="document.getElementById('gcash-form').style.display = 'block'; this.parentElement.style.display = 'none';">Select</button>
+            </div>
+            <div class="order-card">
+                <h3>💵 Cash</h3>
+                <p>Pay on delivery with cash</p>
+                <button class="order-button" onclick="document.getElementById('cash-form').style.display = 'block'; this.parentElement.style.display = 'none';">Select</button>
+            </div>
+        </div>
+
+        <div id="gcash-form" class="delivery-form" style="display: none;">
+            <h4>GCash Payment</h4>
+            <div class="form-group">
+                <label for="gcash-email">Email:</label>
+                <input type="email" id="gcash-email" required>
+            </div>
+            <div class="form-group">
+                <label for="gcash-address">Address:</label>
+                <input type="text" id="gcash-address" required>
+            </div>
+            <div class="form-group">
+                <label for="gcash-phone">Phone Number:</label>
+                <input type="tel" id="gcash-phone" required>
+            </div>
+            <button class="btn-done" onclick="alert('Order placed successfully!')">Done</button>
+        </div>
+
+        <div id="cash-form" class="delivery-form" style="display: none;">
+            <h4>Cash on Delivery</h4>
+            <div class="form-group">
+                <label for="cash-email">Email:</label>
+                <input type="email" id="cash-email" required>
+            </div>
+            <div class="form-group">
+                <label for="cash-address">Address:</label>
+                <input type="text" id="cash-address" required>
+            </div>
+            <div class="form-group">
+                <label for="cash-phone">Phone Number:</label>
+                <input type="tel" id="cash-phone" required>
+            </div>
+            <button class="btn-done" onclick="alert('Order placed successfully!')">Done</button>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <p>Thank you for visiting!</p>
+        <p>Contact us on social media</p>
+        <div class="social-links">
+            <a href="https://web.facebook.com/markdenniel.delossantos.1" target="_blank">Facebook</a>
+            <a href="https://web.facebook.com/chighenquinn" target="_blank">Facebook</a>
+        </div>
+    </footer>
+
+</body>
+</html>
